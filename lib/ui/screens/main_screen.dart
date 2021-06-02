@@ -4,6 +4,7 @@ import 'package:flutter_playstation_app/ui/screens/bottom_nav_screens/game_scree
 import 'package:flutter_playstation_app/ui/screens/bottom_nav_screens/home_screen.dart';
 import 'package:flutter_playstation_app/ui/screens/bottom_nav_screens/shop_screen.dart';
 import 'package:flutter_playstation_app/ui/screens/bottom_nav_screens/wallet_screen.dart';
+import 'package:flutter_playstation_app/ui/widgets/custom_notification_icon.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({Key? key}) : super(key: key);
@@ -35,6 +36,16 @@ class _MainScreenState extends State<MainScreen> {
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.transparent,
+        leading: Padding(
+          padding: const EdgeInsets.only(top: 8.0, left: 8.0,),
+          child: Icon(Icons.account_box_rounded, size: 60, color: Colors.indigo,),
+        ),
+        actions: [
+            Padding(
+              padding: const EdgeInsets.only(top: 15.0, right: 20.0),
+              child: CustomNotificationIcon(),
+            ),
+        ],
       ),
       body: _bottomNavPages[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
@@ -46,13 +57,20 @@ class _MainScreenState extends State<MainScreen> {
         iconSize: 30,
         backgroundColor: Theme.of(context).primaryColor,
         items: [
-          BottomNavigationBarItem(activeIcon: Icon(Icons.home),icon: Icon(Icons.home_outlined), label: ''),
+          BottomNavigationBarItem(
+              activeIcon: Icon(Icons.home),
+              icon: Icon(Icons.home_outlined),
+              label: ''),
           BottomNavigationBarItem(icon: Icon(Icons.videogame_asset), label: ''),
           BottomNavigationBarItem(icon: Icon(Icons.shop), label: ''),
           BottomNavigationBarItem(
-             activeIcon: Icon(Icons.account_balance_wallet), icon: Icon(Icons.account_balance_wallet_outlined), label: ''),
+              activeIcon: Icon(Icons.account_balance_wallet),
+              icon: Icon(Icons.account_balance_wallet_outlined),
+              label: ''),
           BottomNavigationBarItem(
-              activeIcon: Icon(Icons.favorite), icon: Icon(Icons.favorite_border_rounded), label: ''),
+              activeIcon: Icon(Icons.favorite),
+              icon: Icon(Icons.favorite_border_rounded),
+              label: ''),
         ],
       ),
     );
