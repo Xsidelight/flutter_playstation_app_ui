@@ -4,6 +4,8 @@ import 'package:flutter_playstation_app/data/repository/products_list.dart';
 import 'package:flutter_playstation_app/ui/widgets/home_scr_lv_item.dart';
 import 'package:flutter_playstation_app/ui/widgets/special_promo_item.dart';
 
+import '../details_screen.dart';
+
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
@@ -90,11 +92,24 @@ class HomeScreen extends StatelessWidget {
               scrollDirection: Axis.horizontal,
               itemBuilder: (BuildContext context, int index) {
                 var product = dummy_data[index];
-                return HomeScreenListViewItem(
-                  title: product.title,
-                  reviews: product.reviews,
-                  price: product.price,
-                  imagePath: product.imagePath,
+                return GestureDetector(
+                  onTap: () => Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (_) => DetailsScreen(
+                          controller: product.controller,
+                          title: product.title,
+                          description: product.description,
+                          games: product.games,
+                          reviews: product.reviews,
+                          price: product.price),
+                    ),
+                  ),
+                  child: HomeScreenListViewItem(
+                    title: product.title,
+                    reviews: product.reviews,
+                    price: product.price,
+                    imagePath: product.imagePath,
+                  ),
                 );
               },
               itemCount: dummy_data.length,

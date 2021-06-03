@@ -19,6 +19,7 @@ class MyApp extends StatelessWidget {
         accentColor: Color(0xffCA1395),
         scaffoldBackgroundColor:  Color(0xff17153A),
         textTheme: GoogleFonts.ralewayTextTheme(Theme.of(context).textTheme),
+        splashColor: Color(0xffCA1395),
       ),
       home: MainScreen(),
     );
