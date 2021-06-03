@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_playstation_app/data/repository/products_list.dart';
 import 'package:flutter_playstation_app/ui/widgets/home_scr_lv_item.dart';
+import 'package:flutter_playstation_app/ui/widgets/special_promo_item.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -9,7 +10,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 50.0, right: 30, left: 30),
+      padding: const EdgeInsets.only(top: 40.0, right: 30, left: 30),
       child: Column(
         children: [
           Row(
@@ -58,7 +59,7 @@ class HomeScreen extends StatelessWidget {
             ],
           ),
           SizedBox(
-            height: 30,
+            height: 20,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -73,7 +74,9 @@ class HomeScreen extends StatelessWidget {
               Text(
                 'See All',
                 style: TextStyle(
-                    color: Theme.of(context).accentColor, fontSize: 14),
+                    color: Theme.of(context).accentColor,
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold),
               ),
             ],
           ),
@@ -87,13 +90,44 @@ class HomeScreen extends StatelessWidget {
               scrollDirection: Axis.horizontal,
               itemBuilder: (BuildContext context, int index) {
                 var product = dummy_data[index];
-                return HomeScreenListViewItem(title: product.title, reviews: product.reviews, price: product.price, imagePath: product.imagePath,);
+                return HomeScreenListViewItem(
+                  title: product.title,
+                  reviews: product.reviews,
+                  price: product.price,
+                  imagePath: product.imagePath,
+                );
               },
               itemCount: dummy_data.length,
               separatorBuilder: (BuildContext context, int index) =>
                   SizedBox(width: 25),
             ),
           ),
+          SizedBox(
+            height: 30,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                'Special Promo',
+                style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white),
+              ),
+              Text(
+                'See All',
+                style: TextStyle(
+                    color: Theme.of(context).accentColor,
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold),
+              ),
+            ],
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          SpecialPromoItem(),
         ],
       ),
     );

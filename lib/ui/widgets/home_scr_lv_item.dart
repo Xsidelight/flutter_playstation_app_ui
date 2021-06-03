@@ -56,17 +56,20 @@ class HomeScreenListViewItem extends StatelessWidget {
                   height: 8,
                 ),
                 RichText(
-                    text: TextSpan(
-                  children: [
-                    TextSpan(
+                  text: TextSpan(
+                    children: [
+                      TextSpan(
                         text: '\$${price.toString()}',
                         style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 16)),
-                    TextSpan(
+                            fontWeight: FontWeight.bold, fontSize: 16),
+                      ),
+                      TextSpan(
                         text: '/day',
-                        style: TextStyle(fontSize: 16, color: Colors.white70)),
-                  ],
-                )),
+                        style: TextStyle(fontSize: 16, color: Colors.white70),
+                      ),
+                    ],
+                  ),
+                ),
               ],
             ),
           ),
