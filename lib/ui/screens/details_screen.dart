@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_playstation_app/ui/widgets/custom_favorite_icon.dart';
+import 'package:flutter_playstation_app/ui/widgets/custom_rotation_widget.dart';
 import 'package:flutter_playstation_app/ui/widgets/details_screen_card_widget.dart';
+import 'package:flutter_playstation_app/ui/widgets/glowing_button.dart';
 import 'package:intl/intl.dart';
 
 class DetailsScreen extends StatefulWidget {
@@ -80,6 +82,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
               height: 25,
             ),
             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Column(
                   children: [
@@ -101,7 +104,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                         controller: widget.reviews, name: 'Reviews'),
                   ],
                 ),
-                Container(),
+                Center(child: CustomRotationWidget()),
               ],
             ),
             SizedBox(
@@ -224,6 +227,38 @@ class _DetailsScreenState extends State<DetailsScreen> {
                       ],
                     ),
                   ),
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Flexible(
+                  flex: 2,
+                  child: Center(
+                    child: RichText(
+                      text: TextSpan(
+                        children: [
+                          TextSpan(
+                            text: '\$${widget.price.toString()}',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 25),
+                          ),
+                          TextSpan(
+                            text: '/day',
+                            style: TextStyle(fontSize: 16, color: Colors.white70),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                Flexible(
+                  flex: 2,
+                  child: GlowingButton(),
                 ),
               ],
             )
