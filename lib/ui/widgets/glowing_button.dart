@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_playstation_app/ui/screens/payment_screen.dart';
 
 class GlowingButton extends StatefulWidget {
-  const GlowingButton({Key? key}) : super(key: key);
+  const GlowingButton({Key? key, required this.title}) : super(key: key);
+
+  final String title;
 
   @override
   _GlowingButtonState createState() => _GlowingButtonState();
@@ -51,7 +53,7 @@ class _GlowingButtonState extends State<GlowingButton>
           borderRadius: BorderRadius.circular(10),
         ),
         child: Text(
-          'Rent',
+          widget.title,
           style: TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.bold,

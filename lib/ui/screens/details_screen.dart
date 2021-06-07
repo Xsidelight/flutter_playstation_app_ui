@@ -261,7 +261,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                 ),
                 Flexible(
                   flex: 2,
-                  child: GlowingButton(),
+                  child: GlowingButton(title: 'Rent',),
                 ),
               ],
             )
