@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_playstation_app/ui/screens/payment_screen.dart';
 
 class GlowingButton extends StatefulWidget {
   const GlowingButton({Key? key}) : super(key: key);
@@ -32,27 +33,30 @@ class _GlowingButtonState extends State<GlowingButton>
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      alignment: Alignment.center,
-      height: 50,
-      width: double.infinity,
-      decoration: BoxDecoration(
-        boxShadow: [
-          BoxShadow(
-            color: Color(0xfff05cc6),
-            blurRadius: _animation.value,
-            spreadRadius: _animation.value,
-          )
-        ],
-        color: Theme.of(context).accentColor,
-        borderRadius: BorderRadius.circular(10),
-      ),
-      child: Text(
-        'Rent',
-        style: TextStyle(
-          color: Colors.white,
-          fontWeight: FontWeight.bold,
-          fontSize: 16
+    return GestureDetector(
+      onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => PaymentScreen())),
+      child: Container(
+        alignment: Alignment.center,
+        height: 50,
+        width: double.infinity,
+        decoration: BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+              color: Color(0xfff05cc6),
+              blurRadius: _animation.value,
+              spreadRadius: _animation.value,
+            )
+          ],
+          color: Theme.of(context).accentColor,
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: Text(
+          'Rent',
+          style: TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+            fontSize: 16
+          ),
         ),
       ),
     );

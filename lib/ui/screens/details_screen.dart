@@ -87,6 +87,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                 Column(
                   children: [
                     DetailsScreenCardWidget(
+                      icon: Icons.sports_esports,
                       controller: widget.controller,
                       name: 'Controller',
                     ),
@@ -94,6 +95,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                       height: 20,
                     ),
                     DetailsScreenCardWidget(
+                      icon: Icons.games,
                       controller: widget.games,
                       name: 'Games',
                     ),
@@ -101,7 +103,8 @@ class _DetailsScreenState extends State<DetailsScreen> {
                       height: 20,
                     ),
                     DetailsScreenCardWidget(
-                        controller: widget.reviews, name: 'Reviews'),
+                      icon: Icons.star,
+                        controller: widget.reviews, name: 'Reviews',),
                   ],
                 ),
                 Center(child: CustomRotationWidget()),

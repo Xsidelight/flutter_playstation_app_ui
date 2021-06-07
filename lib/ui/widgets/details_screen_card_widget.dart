@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 
 class DetailsScreenCardWidget extends StatelessWidget {
   const DetailsScreenCardWidget(
-      {Key? key, required this.controller, required this.name})
+      {Key? key, required this.controller, required this.name, required this.icon})
       : super(key: key);
 
   final String name;
   final int controller;
+  final IconData icon;
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +24,7 @@ class DetailsScreenCardWidget extends StatelessWidget {
           Row(
             children: [
               Icon(
-                Icons.videogame_asset,
+                icon,
                 color: Theme.of(context).accentColor,
               ),
               SizedBox(
