@@ -8,7 +8,101 @@ class PaymentScreen extends StatefulWidget {
   _PaymentScreenState createState() => _PaymentScreenState();
 }
 
-class _PaymentScreenState extends State<PaymentScreen> {
+class _PaymentScreenState extends State<PaymentScreen>
+    with TickerProviderStateMixin {
+  int firstCardIndex = 0;
+  int secondCardIndex = 1;
+  int thirdCardIndex = 2;
+
+  bool isPressed = false;
+
+  late AnimationController _animationControllerFirst;
+  late AnimationController _animationControllerSecond;
+  late AnimationController _animationControllerThird;
+
+  late Animation<double> _firstCardAnimation;
+  late Animation<double> _secondCardAnimation;
+  late Animation<double> _thirdCardAnimation;
+
+  void firstCardTapped() {
+    setState(() {
+      firstCardIndex = 0;
+      secondCardIndex = 1;
+      thirdCardIndex = 2;
+    });
+    _animationControllerFirst.forward();
+    _animationControllerSecond.forward();
+    _animationControllerThird.forward();
+  }
+
+  void secondCardTapped() {
+    setState(() {
+      secondCardIndex = 0;
+      firstCardIndex = 1;
+      thirdCardIndex = 2;
+    });
+    _animationControllerFirst.forward();
+    _animationControllerSecond.forward();
+    _animationControllerThird.forward();
+  }
+
+  void thirdCardTapped() {
+    _animationControllerFirst.forward();
+    _animationControllerThird.forward();
+    _animationControllerSecond.forward();
+    setState(() {
+      secondCardIndex = 1;
+      firstCardIndex = 2;
+      thirdCardIndex = 0;
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _animationControllerFirst =
+        AnimationController(vsync: this, duration: Duration(milliseconds: 100));
+    _animationControllerSecond =
+        AnimationController(vsync: this, duration: Duration(milliseconds: 150));
+    _animationControllerThird =
+        AnimationController(vsync: this, duration: Duration(milliseconds: 200));
+    _firstCardAnimation =
+        Tween<double>(begin: 1, end: 400).animate(_animationControllerFirst);
+    _secondCardAnimation =
+        Tween<double>(begin: 1, end: 400).animate(_animationControllerSecond);
+    _thirdCardAnimation =
+        Tween<double>(begin: 1, end: 400).animate(_animationControllerThird);
+    _animationControllerFirst.addListener(() {
+      setState(() {
+        if (_animationControllerFirst.status  == AnimationStatus.completed) {
+          _animationControllerFirst.reverse();
+        }
+      });
+    });
+    _animationControllerSecond.addListener(() {
+      setState(() {
+        if (_animationControllerSecond.status  == AnimationStatus.completed) {
+          _animationControllerSecond.reverse();
+        }
+      });
+    });
+    _animationControllerThird.addListener(() {
+      setState(() {
+        if (_animationControllerThird.status  == AnimationStatus.completed) {
+          _animationControllerThird.reverse();
+        }
+      });
+    });
+  }
+
+  @override
+  void dispose() {
+    _animationControllerFirst.dispose();
+    _animationControllerSecond.dispose();
+    _animationControllerThird.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -112,24 +206,57 @@ class _PaymentScreenState extends State<PaymentScreen> {
                 ),
                 Flexible(
                   flex: 3,
-                  child: Stack(
-                    children: [
-                      Container(
-                        height: 200,
-                      ),
-                      Positioned(
-                          top: 60,
-                          left: 1,
-                          child: Image.asset('assets/images/card_white.png')),
-                      Positioned(
-                          top: 30,
-                          left: 1,
-                          child: Image.asset('assets/images/card_pink.png')),
-                      Positioned(
+                  child: Container(
+                    height: 220,
+                    child: Stack(
+                      children: [
+                        Positioned(
+                          top: 65,
+                          left: _thirdCardAnimation.value,
+                          child: GestureDetector(
+                            onTap: () => thirdCardTapped(),
+                            child: IndexedStack(
+                              index: thirdCardIndex,
+                              children: [
+                                Image.asset('assets/images/card_white.png'),
+                                Image.asset('assets/images/card_pink.png'),
+                                Image.asset('assets/images/card_blue.png'),
+                              ],
+                            ),
+                          ),
+                        ),
+                        Positioned(
+                          top: 35,
+                          left: _secondCardAnimation.value,
+                          child: GestureDetector(
+                            onTap: () => secondCardTapped(),
+                            child: IndexedStack(
+                              index: secondCardIndex,
+                              children: [
+                                Image.asset('assets/images/card_white.png'),
+                                Image.asset('assets/images/card_pink.png'),
+                                Image.asset('assets/images/card_blue.png'),
+                              ],
+                            ),
+                          ),
+                        ),
+                        Positioned(
                           top: 1,
-                          left: 1,
-                          child: Image.asset('assets/images/card_blue.png')),
-                    ],
+                          left: _firstCardAnimation.value,
+                          child: GestureDetector(
+                            onTap: () => firstCardTapped(),
+                            child: IndexedStack(
+                              index: firstCardIndex,
+                              children: [
+                                Image.asset('assets/images/card_white.png'),
+                                Image.asset('assets/images/card_pink.png'),
+                                Image.asset('assets/images/card_blue.png'),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ],
@@ -152,7 +279,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                   fontWeight: FontWeight.bold),
             ),
             SizedBox(
-              height: 15,
+              height: 40,
             ),
             Padding(
               padding: const EdgeInsets.only(right: 33),
