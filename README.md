@@ -1,6 +1,8 @@
 # flutter_playstation_app
 
-Personal project playstation app example.
+Personal project PlayStation app example. Using different flutter animations, stacks, and indexed stacks.
+
+![FitnessApp gif]( https://media.giphy.com/media/8otN8T7TKKqVnBvWuF/giphy.gif )
 
 ## Getting Started
 
